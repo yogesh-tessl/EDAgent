@@ -1,6 +1,6 @@
 ---
 name: eda-loop
-description: "Execute one scoped EDA task under governed gates: run bootstrap checks, route to minimal specialist skills, validate artifacts, and return execution evidence."
+description: "Orchestrates a single scoped EDA task end-to-end for VLSI design workflows. Runs bootstrap checks (knowledge gate, tool catalog, infrastructure guard), routes to the minimal set of specialist skills (placement, routing, timing, power optimization), executes under hard validation gates (PDK preflight, execution-contract checks, comparison-policy enforcement), and produces verified closeout artifacts with full execution evidence. Use when you need to run a governed EDA experiment, submit a route/CTS batch with preflight validation, test an algorithmic hypothesis against baselines, or execute any VLSI design task that requires auditable artifact trails and gate-controlled quality assurance."
 ---
 
 # EDA Loop
@@ -48,32 +48,14 @@ python3 scripts/common/infra_stack_guard.py --out-prefix slurm_logs/00_meta/infr
 ## Step 2: Skill routing (minimal set)
 
 Select the smallest set of specialist skills that covers the scoped objective.
-Load `references/skill-routing.md` only as needed.
+Consult `references/skill-routing.md` for the full routing matrix (24 request patterns mapped to skills and scripts).
 
-Primary local skills:
-- `bspdn-goal-driver`
-- `eda-research-chain`
-- `eda-knowledge-explorer`
-- `eda-idea-debate-lab`
-- `eda-hypothesis-experiment-designer`
-- `eda-method-implementer`
-- `eda-knowledge-gate-maintainer`
-- `eda-infra-maintainer`
-- `eda-preflight-reflect`
-- `eda-retro`
-- `eda-stage-checkpoint-golden`
-- `gt3-backside-route-policy`
-- `delay-model-gate-evaluator`
-- `bscost-net`
-- `bscost-theory-opt`
-- `eda-paper-fetch`
-- `eda-pdf-local-summary`
-
-System skills:
-- `skill-creator` (create/update skills)
-- `skill-installer` (install external skills)
-
-For full-chain research requests, prefer `eda-research-chain` as the primary workflow skill.
+Key routing shortcuts:
+- **Full research chain**: use `eda-research-chain` as the primary workflow skill.
+- **Goal-driven optimization** (power/frequency targets): use `bspdn-goal-driver`.
+- **Pre-experiment reflection**: use `eda-preflight-reflect` before any new submission.
+- **Post-experiment retrospective**: use `eda-retro` to classify failures and decide recursion.
+- **Skill creation/installation**: use `skill-creator` or `skill-installer`.
 
 ## Step 3: Execute under hard gates
 1. Announce selected skills and first action.

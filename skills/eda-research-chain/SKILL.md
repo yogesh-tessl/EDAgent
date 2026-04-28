@@ -1,6 +1,6 @@
 ---
 name: eda-research-chain
-description: Run a full EDA research chain from knowledge exploration and paper triage to idea debate, hypothesis experiment design, implementation, git versioning, validation, and retrospective.
+description: "Orchestrates a full Electronic Design Automation (EDA) research chain across eleven stages — knowledge-gap mapping, literature retrieval and PDF summarization, idea brainstorming and debate, hypothesis-to-experiment design with preflight checks, method implementation, git-based multi-version development, validation via delay-model gate evaluation, retrospective analysis, and milestone summary generation. Produces auditable artifacts at every stage including gap maps, paper indices, pro/con debates, experiment matrices, implementation plans, version deltas, and validation summaries. Use when the user requests an end-to-end VLSI research workflow, needs to run a complete EDA research pipeline, or wants to chain knowledge exploration through validation and retrospective for a new chip-design method."
 ---
 
 # EDA Research Chain
@@ -67,6 +67,12 @@ python3 scripts/common/init_research_chain.py --tag <tag>
 ```bash
 python3 scripts/common/research_chain_guard.py --chain-dir <chain_dir> --out-prefix <prefix>
 ```
+
+## Example invocation
+
+> "Run a full research chain to explore gate-sizing strategies for power reduction on the skywater130 PDK."
+
+This triggers all eleven stages: the chain bootstraps a workspace, maps knowledge gaps around gate sizing, retrieves and summarizes relevant papers, debates candidate ideas, designs hypothesis experiments with preflight reflection, implements the chosen method, versions it in git, validates against delay-model gates, writes a retrospective, and guards completeness.
 
 ## Hard rules
 

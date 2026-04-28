@@ -1,6 +1,6 @@
 ---
 name: eda-chief
-description: Legacy compatibility shim for historical eda-chief calls. Use when old prompts/scripts still invoke eda-chief, then dispatch to the repo-level agent policy and execution skills.
+description: "Legacy compatibility shim for historical eda-chief, chief, or run-chief invocations. Use when old prompts, scripts, or aliases still call eda-chief or reference the chief orchestrator role, then routes through AGENTS.md governance policy and dispatches scoped execution briefs to eda-loop for iterative EDA experimentation, invoking eda-theory-veto for risk gating and eda-retro for batch retrospectives as needed."
 ---
 
 # EDA Chief
@@ -16,11 +16,29 @@ Top-level governance is defined in `AGENTS.md` at repo root.
 
 1. Load `AGENTS.md` and follow its global routing/governance policy.
 2. Convert legacy "chief-style" request into a scoped execution brief.
-3. Dispatch execution to `eda-loop`.
+3. Dispatch execution to `eda-loop` for iterative EDA experimentation.
 4. Add control skills only when needed:
    - `eda-theory-veto` for high-cost/high-risk proposals.
    - `eda-retro` after experiment batches that need next-step decision.
-5. Keep outputs short and artifact-driven.
+5. If `AGENTS.md` is missing or the request cannot be mapped to a valid execution brief, halt and report the routing failure rather than proceeding with an unscoped dispatch.
+6. Keep outputs short and artifact-driven.
+
+### Example: legacy invocation mapping
+
+A legacy prompt such as:
+
+```
+@eda-chief run timing closure on block_aes with 10% margin
+```
+
+Maps to the following scoped execution brief dispatched to `eda-loop`:
+
+```yaml
+scope: block_aes
+task: timing-closure
+constraint: margin >= 10%
+control: eda-theory-veto (auto-attach, cost threshold exceeded)
+```
 
 ## Hard boundaries
 

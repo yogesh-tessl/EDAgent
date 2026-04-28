@@ -1,13 +1,13 @@
 ---
 name: academic-presentation-crafter
-description: Creates and refines high-quality academic presentations from research papers. Use this skill for tasks involving the conversion of scientific or technical documents into slide decks for conferences, lectures, or academic reviews.
+description: "Creates and refines academic presentations from research papers — extracts key findings, generates slide outlines, formats citations, and creates speaker notes. Use when converting scientific or technical documents into slide decks for conferences, seminars, lectures, thesis defenses, or academic reviews. Supports beamer LaTeX (.tex), PowerPoint (.pptx), and Markdown output formats."
 ---
 
 # Academic Presentation Crafter
 
 ## Overview
 
-This skill provides a structured, multi-phase workflow for transforming dense research papers into clear, concise, and academically rigorous presentations. It ensures the final slide deck is not only visually polished but also accurately reflects the paper's core contributions, data, and terminology.
+This skill provides a structured, multi-phase workflow for transforming dense research papers into clear, concise, and academically rigorous presentations. It ensures the final slide deck accurately reflects the paper's core contributions, data, and terminology.
 
 ## Workflow
 
@@ -44,30 +44,39 @@ This phase focuses on populating the slides with content and integrating the nec
 
 ### Phase 3: Academic Rigor & Content Refinement
 
-This is the most critical phase for ensuring the presentation meets academic standards. It requires meticulous attention to detail.
+This phase ensures the presentation meets academic standards. Apply the full checklist in `references/academic_rigor_checklist.md`, paying special attention to these critical items:
 
-**Action**: Read and meticulously follow the checklist in `references/academic_rigor_checklist.md`.
+1. **Data and Metrics Verification**: Cross-check every number, table entry, and graph value against the source paper. Flag any discrepancy before proceeding.
+2. **Terminology and Acronyms**: Define all acronyms on first use. Ensure domain-specific terms (e.g., PPA, timing closure, netlist) match the paper's definitions exactly.
+3. **Claims and Contributions**: Verify that no slide overstates or understates the paper's claims. Each contribution slide must trace back to a specific section of the paper.
+4. **Citations**: Include inline citations for all borrowed figures, data, and direct quotes. Use the paper's citation style consistently.
 
-This checklist covers:
--   Data and Metrics Verification
--   Terminology and Acronyms
--   Claims and Contributions
--   Explanations and Notations
+**Feedback loop**: After applying the checklist, revisit Phase 2 slides — update any content that was corrected here and re-verify data placeholders.
 
 ### Phase 4: Visual Polish & Final Review
 
-This final phase focuses on aesthetics, readability, and overall presentation quality.
+Apply the full checklist in `references/visual_polish_checklist.md`, focusing on these high-impact items:
 
-**Action**: Read and meticulously follow the checklist in `references/visual_polish_checklist.md`.
+1. **Typography**: Minimum 18pt body font, 24pt+ for slide titles. Ensure consistent font family across all slides.
+2. **Layout consistency**: Uniform margins, bullet indentation, and figure placement. Align elements to a grid.
+3. **Visual cohesion**: Use a single color palette derived from the institution or conference theme. Limit accent colors to 2-3.
 
-This checklist covers:
--   Readability and Typography (e.g., min 18pt font size)
--   Layout and Consistency
--   Visual Cohesion
--   Final Review Steps
+**Feedback loop**: Do a full sequential walkthrough of the deck. If any slide feels unclear or visually inconsistent, return to the relevant earlier phase to fix the root cause before finalizing.
 
-## Key Principles
+## Example Output
 
--   **Academic Integrity First**: The presentation must be a faithful representation of the research paper.
--   **Clarity and Conciseness**: Slides should support the speaker, not replace them.
--   **Consistency is Professional**: A consistent visual style signals a well-prepared presentation.
+A results slide in Markdown format:
+
+```markdown
+## Results: Timing Closure Improvement
+
+- Proposed flow achieves **12% WNS reduction** vs. baseline (Table 3)
+- Area overhead: +2.1% (within PPA budget)
+- Runtime: 3.2× faster than conventional approach
+
+![Timing comparison](figures/fig5_timing_comparison.png)
+<!-- Source: Fig. 5, Section IV-B -->
+
+> Speaker notes: Emphasize the WNS improvement first, then address
+> the area-runtime tradeoff. Reference Table 3 for detailed breakdowns.
+```
